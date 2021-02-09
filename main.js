@@ -10,13 +10,13 @@ const createScene = () => {
     const cena = new BABYLON.Scene(engine);
 
     // cria uma camera para tal cena
-    const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 3, new BABYLON.Vector3(0, 3, -10), cena)
+    const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 3, 10, new BABYLON.Vector3(0, 6, -10), cena)
 
     // permite eu controlar a camera
     camera.attachControl(canvas, true);
 
     // cria a luz
-    const light = new BABYLON.HemisphericLight("luz", new BABYLON.Vector3(3, 2, -3), cena);
+    const light = new BABYLON.HemisphericLight("luz", new BABYLON.Vector3(0, 10, 0), cena);
 
     // cria um objeto
     const ObjectCaixaUm = BABYLON.MeshBuilder.CreateBox("Caixa1", {size: 0.2, width: 10, height: 2}, cena);
@@ -31,13 +31,16 @@ const createScene = () => {
     ObjectCaixaTres.position.x = 4.9;
     ObjectCaixaTres.position.y = -1.5;
     
-    const ObjectCaixaQuatro = BABYLON.MeshBuilder.CreateBox("Caixa4", {size: 10, width:0.2, height: 2}, cena)
+    const ObjectCaixaQuatro = BABYLON.MeshBuilder.CreateBox("Caixa4", {size: 100, width:0.2, height: 2}, cena)
     ObjectCaixaQuatro.position.x = -4.9;
     ObjectCaixaQuatro.position.y = -1.5;
 
     // cria o chão e muda sua posição no Y
     const ObjectChao = BABYLON.MeshBuilder.CreateGround("terra", {width: 10, height: 10})
     ObjectChao.position.y = -2.5;
+
+    // importar um modelo já feito
+    BABYLON.SceneLoader.ImportMeshAsync("", "/models/", "teste.babylon")
 
     return cena;
 }
